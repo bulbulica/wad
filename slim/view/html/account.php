@@ -16,10 +16,10 @@
                 <li><a href="index">Home</a></li>
                 <li><a href="about">About</a></li>
                 <li><a href="packages">Packages</a></li>
-                <li class="active"><a href="contact">Contact</a></li>
+                <li><a href="contact">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="account">Account</a></li>
+                <li class="active"><a href="account">Account</a></li>
                 <li><a href="logout">Logout</a></li>
             </ul>
         </div><!--/.nav-collapse -->
@@ -53,24 +53,15 @@
         </ul>
     </div>
     <div class="col-md-9">
-        <div class="form-area">
-            <form role="form">
-                <br style="clear:both">
-                <h3 style="margin-bottom: 25px; text-align: center;">Contact Form</h3>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" type="textarea" id="message" placeholder="Message" maxlength="140" rows="7"></textarea>
-                </div>
-                <button type="button" id="submit" name="submit" class="btn btn-primary pull-right">Submit Form</button>
-            </form>
-        </div>
+        <div id="acc"></div>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='account_orders'">Orders</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='account_offers'">Offers</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='account_information'">Account Information</button>
     </div>
 </div>
+<script>
+    $.getJSON( "http://localhost/web/public/users/<?php echo $_SESSION['user'];?>", function(json){
+        var user = $("<h2>Welcome " + json.username + "</h2>");
+        $('#acc').append(user);
+    });
+</script>

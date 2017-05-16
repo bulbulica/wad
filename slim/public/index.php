@@ -10,11 +10,11 @@ $app = new \Slim\App;
 $container = $app->getContainer();
 $container['renderer'] = new PhpRenderer("../view");
 
-$cookie_user = '';
+session_start();
 
-$app->get('/', function (Request $request, Response $response) use ($cookie_user)
+$app->get('/', function (Request $request, Response $response)
 {
-    if(!isset($_COOKIE[$cookie_user]))
+    if(!isset($_SESSION["user"]))
     {
         $this->renderer->render($response, "/html/header.html");
         $this->renderer->render($response, "/html/index.html");
@@ -30,37 +30,82 @@ $app->get('/', function (Request $request, Response $response) use ($cookie_user
 
 $app->get('/index', function (Request $request, Response $response)
 {
-    $this->renderer->render($response, "/html/header.html");
-    $this->renderer->render($response, "/html/index.html");
-    $this->renderer->render($response, "/html/footer.html");
+    if(!isset($_SESSION["user"]))
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/index.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
+    else
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/index2.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
 });
 
 $app->get('/about', function (Request $request, Response $response)
 {
-    $this->renderer->render($response, "/html/header.html");
-    $this->renderer->render($response, "/html/about.html");
-    $this->renderer->render($response, "/html/footer.html");
+    if(!isset($_SESSION["user"]))
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/about.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
+    else
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/about2.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
 });
 
 $app->get('/cart', function (Request $request, Response $response)
 {
-    $this->renderer->render($response, "/html/header.html");
-    $this->renderer->render($response, "/html/cart.html");
-    $this->renderer->render($response, "/html/footer.html");
+    if(!isset($_SESSION["user"]))
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/cart.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
+    else
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/cart2.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
 });
 
 $app->get('/contact', function (Request $request, Response $response)
 {
-    $this->renderer->render($response, "/html/header.html");
-    $this->renderer->render($response, "/html/contact.html");
-    $this->renderer->render($response, "/html/footer.html");
+    if(!isset($_SESSION["user"]))
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/contact.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
+    else
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/contact2.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
 });
 
 $app->get('/packages', function (Request $request, Response $response)
 {
-    $this->renderer->render($response, "/html/header.html");
-    $this->renderer->render($response, "/html/packages.html");
-    $this->renderer->render($response, "/html/footer.html");
+    if(!isset($_SESSION["user"]))
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/index.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
+    else
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/packages2.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
 });
 
 $app->get('/login', function (Request $request, Response $response)
@@ -70,9 +115,45 @@ $app->get('/login', function (Request $request, Response $response)
     $this->renderer->render($response, "/html/footer.html");
 });
 
+$app->get('/logout', function (Request $request, Response $response)
+{
+    $this->renderer->render($response, "/html/header.html");
+    $this->renderer->render($response, "/html/logout.html");
+    $this->renderer->render($response, "/html/footer.html");
+    session_unset();
+});
+
+$app->get('/account', function (Request $request, Response $response)
+{
+    $this->renderer->render($response, "/html/header.html");
+    $this->renderer->render($response, "/html/account.php");
+    $this->renderer->render($response, "/html/footer.html");
+});
+
+$app->get('/account_information', function (Request $request, Response $response)
+{
+    $this->renderer->render($response, "/html/header.html");
+    $this->renderer->render($response, "/html/account_information.php");
+    $this->renderer->render($response, "/html/footer.html");
+});
+
+$app->get('/account_orders', function (Request $request, Response $response)
+{
+    $this->renderer->render($response, "/html/header.html");
+    //$this->renderer->render($response, "/html/account_information.php");
+    $this->renderer->render($response, "/html/footer.html");
+});
+
+$app->get('/account_offers', function (Request $request, Response $response)
+{
+    $this->renderer->render($response, "/html/header.html");
+    //$this->renderer->render($response, "/html/account_information.php");
+    $this->renderer->render($response, "/html/footer.html");
+});
+
 $app->get('/admin/', function (Request $request, Response $response)
 {
-    if(!isset($_COOKIE['admin']))
+    if(!isset($_SESSION['admin']))
     {
         echo "Error";
     }
@@ -109,7 +190,7 @@ $app->get('/users', function (Request $request, Response $response) use ($mysqli
 
     while($row = $result -> fetch_assoc())
     {
-        $data[] = $row;
+        $data = $row;
     }
     if (isset($data))
     {
@@ -125,7 +206,7 @@ $app->get('/users/{username}', function (Request $request, Response $response) u
     $query = "select * from users where username = '$username'";
     $result = $mysqli->query($query);
 
-    $data[] = $result -> fetch_assoc();
+    $data = $result -> fetch_assoc();
 
     if (isset($data))
     {
@@ -145,15 +226,21 @@ $app->post('/users', function (Request $request, Response $response) use ($mysql
 
     $query = "insert into users (username, password, name, surname, adress, account_type) values ('$username', '$password', '$name', '$surname', '$adress', '$account_type')";
 
-    if ($mysqli->query($query))
-    {
-        header('Content-Type: application/json');
-        echo json_encode(array("status" => "success", "code" => 1));
-    }
-    else
-    {
-        echo '{"error":{"message":"An error occurred!"}}';
-    }
+    $mysqli->query($query);
+});
+
+$app->put('/users/all', function (Request $request, Response $response) use ($mysqli)
+{
+    $username = $request->getParsedBody()['username'];
+    $password = $request->getParsedBody()['password'];
+    $email = $request->getParsedBody()['email'];
+    $name = $request->getParsedBody()['name'];
+    $surname = $request->getParsedBody()['surname'];
+    $adress = $request->getParsedBody()['adress'];
+
+    $query = "update users set password = '$password', email='$email', name='$name', surname='$surname', adress='$adress' WHERE username = '$username'";
+
+    $mysqli->query($query);
 });
 
 $app->put('/users/password', function (Request $request, Response $response) use ($mysqli)
@@ -163,15 +250,17 @@ $app->put('/users/password', function (Request $request, Response $response) use
 
     $query = "update users set password = '$password' WHERE username like '$username'";
 
-    if ($mysqli->query($query) == true)
-    {
-        header('Content-Type: application/json');
-        echo json_encode(array("status" => "success", "code" => 1));
-    }
-    else
-    {
-        echo '{"error":{"message":"An error occurred!"}}';
-    }
+    $mysqli->query($query);
+});
+
+$app->put('/users/email', function (Request $request, Response $response) use ($mysqli)
+{
+    $username = $request->getParsedBody()['username'];
+    $email = $request->getParsedBody()['email'];
+
+    $query = "update users set email = '$email' WHERE username = '$username'";
+
+    $mysqli->query($query);
 });
 
 $app->put('/users/name', function (Request $request, Response $response) use ($mysqli)
@@ -181,15 +270,7 @@ $app->put('/users/name', function (Request $request, Response $response) use ($m
 
     $query = "update users set name = '$name' WHERE username = '$username'";
 
-    if ($mysqli->query($query))
-    {
-        header('Content-Type: application/json');
-        echo json_encode(array("status" => "success", "code" => 1));
-    }
-    else
-    {
-        echo '{"error":{"message":"An error occurred!"}}';
-    }
+    $mysqli->query($query);
 });
 
 $app->put('/users/surname', function (Request $request, Response $response) use ($mysqli)
@@ -199,15 +280,7 @@ $app->put('/users/surname', function (Request $request, Response $response) use 
 
     $query = "update users set surname = '$surname' WHERE username = '$username'";
 
-    if ($mysqli->query($query))
-    {
-        header('Content-Type: application/json');
-        echo json_encode(array("status" => "success", "code" => 1));
-    }
-    else
-    {
-        echo '{"error":{"message":"An error occurred!"}}';
-    }
+    $mysqli->query($query);
 });
 
 $app->put('/users/adress', function (Request $request, Response $response) use ($mysqli)
@@ -217,15 +290,7 @@ $app->put('/users/adress', function (Request $request, Response $response) use (
 
     $query = "update users set adress = '$adress' WHERE username = '$username'";
 
-    if ($mysqli->query($query))
-    {
-        header('Content-Type: application/json');
-        echo json_encode(array("status" => "success", "code" => 1));
-    }
-    else
-    {
-        echo '{"error":{"message":"An error occurred!"}}';
-    }
+    $mysqli->query($query);
 });
 
 $app->put('/users/account_type', function (Request $request, Response $response) use ($mysqli)
@@ -235,15 +300,7 @@ $app->put('/users/account_type', function (Request $request, Response $response)
 
     $query = "update users set account_type = '$account_type' WHERE username = '$username'";
 
-    if ($mysqli->query($query))
-    {
-        header('Content-Type: application/json');
-        echo json_encode(array("status" => "success", "code" => 1));
-    }
-    else
-    {
-        echo '{"error":{"message":"An error occurred!"}}';
-    }
+    $mysqli->query($query);
 });
 
 $app->delete('/users/{username}', function (Request $request, Response $response) use ($mysqli)
@@ -252,19 +309,10 @@ $app->delete('/users/{username}', function (Request $request, Response $response
 
     $query = "delete from users where username = '$username'";
 
-    if ($mysqli->query($query))
-    {
-        header('Content-Type: application/json');
-        echo json_encode(array("status" => "success", "code" => 1));
-    }
-    else
-    {
-        echo '{"error":{"message":"An error occurred!"}}';
-        echo $username;
-    }
+    $mysqli->query($query);
 });
 
-$app->post('/login', function (Request $request, Response $response) use ($mysqli, $cookie_user)
+$app->post('/login', function (Request $request, Response $response) use ($mysqli)
 {
     $submit = $request->getParsedBody()['submit'];
     $user = $request->getParsedBody()['username'];
@@ -280,7 +328,7 @@ $app->post('/login', function (Request $request, Response $response) use ($mysql
 
         if($check_user>0)
         {
-            setcookie($cookie_user, $user, time() + (86400 * 30), "/");
+            $_SESSION["user"] = "$user";
             return $response->withStatus(302)->withHeader('Location', 'account');
         }
         else
@@ -290,13 +338,6 @@ $app->post('/login', function (Request $request, Response $response) use ($mysql
             $this->renderer->render($response, "/html/footer.html");
         }
     }
-});
-
-$app->get('/account', function (Request $request, Response $response)
-{
-    $this->renderer->render($response, "/html/header.html");
-    $this->renderer->render($response, "/html/user.html");
-    $this->renderer->render($response, "/html/footer.html");
 });
 
 $app->run();
