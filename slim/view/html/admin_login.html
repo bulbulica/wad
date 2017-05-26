@@ -15,11 +15,10 @@
             <ul class="nav navbar-nav">
                 <li><a href="index">Home</a></li>
                 <li><a href="about">About</a></li>
-                <li class="active"><a href="packages">Packages</a></li>
                 <li><a href="contact">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="login">Login</a></li>
+                <li class="active"><a href="login">Login</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -52,11 +51,21 @@
         </ul>
     </div>
     <div class="col-md-9">
-        <p>With a logged in account you can buy the following packages :</p>
-        <button type="button" class="btn btn-primary">5 offers for 5$</button>
-        <br/><br/>
-        <button type="button" class="btn btn-primary">20 offers for 25$</button>
-        <br/><br/>
-        <button type="button" class="btn btn-primary">50 offers for 40$</button>
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title"><strong>Sign In </strong></h3></div>
+            <div class="panel-body">
+                <form role="form" action='admin_login' method="post">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Enter password">
+                    </div>
+                    <button type="submit" name="submit" class="btn btn-sm btn-default">Sign in</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

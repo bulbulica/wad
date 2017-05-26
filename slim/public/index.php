@@ -108,6 +108,86 @@ $app->get('/packages', function (Request $request, Response $response)
     }
 });
 
+$app->get('/bighouses', function (Request $request, Response $response)
+{
+    if(!isset($_SESSION["user"]))
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/bighouses.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
+    else
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/bighouses2.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
+});
+
+$app->get('/smallhouses', function (Request $request, Response $response)
+{
+    if(!isset($_SESSION["user"]))
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/smallhouses.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
+    else
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/smallhouses2.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
+});
+
+$app->get('/threerooms', function (Request $request, Response $response)
+{
+    if(!isset($_SESSION["user"]))
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/threerooms.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
+    else
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/threerooms2.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
+});
+
+$app->get('/tworooms', function (Request $request, Response $response)
+{
+    if(!isset($_SESSION["user"]))
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/tworooms.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
+    else
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/tworooms2.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
+});
+
+$app->get('/studios', function (Request $request, Response $response)
+{
+    if(!isset($_SESSION["user"]))
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/studios.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
+    else
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/studios2.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
+});
+
 $app->get('/login', function (Request $request, Response $response)
 {
     $this->renderer->render($response, "/html/header.html");
@@ -151,46 +231,78 @@ $app->get('/account_offers', function (Request $request, Response $response)
     $this->renderer->render($response, "/html/footer.html");
 });
 
-$app->get('/admin/', function (Request $request, Response $response)
+$app->get('/admin', function (Request $request, Response $response)
 {
     if(!isset($_SESSION['admin']))
     {
-        echo "Error";
-    }
-});
-
-$app->get('/admin/index', function (Request $request, Response $response)
-{
-    //header("Location: /admin/index");
-    echo "abc";
-});
-
-$app->get('/admin/logout', function (Request $request, Response $response) use ($app)
-{
-    //$app->deleteCookie('admin');
-});
-
-$app->get('/admin/login', function (Request $request, Response $response) use ($app)
-{
-    if(!isset($_COOKIE['admin']))
-    {
-        $this->renderer->render($response, "/admin/html/index.html");
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/admin_login.html");
+        $this->renderer->render($response, "/html/footer.html");
     }
     else
     {
-        $this->renderer->render($response, "/admin/html/login.html");
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/admin.html");
+        $this->renderer->render($response, "/html/footer.html");
     }
 });
 
+$app->get('/alluserinformation', function (Request $request, Response $response)
+{
+    if(isset($_SESSION['admin']))
+    {
+        $this->renderer->render($response, "/html/header.html");
+        $this->renderer->render($response, "/html/alluserinformation.html");
+        $this->renderer->render($response, "/html/footer.html");
+    }
+});
+
+$app->get('/admin_logout', function (Request $request, Response $response)
+{
+    $this->renderer->render($response, "/html/header.html");
+    $this->renderer->render($response, "/html/logout.html");
+    $this->renderer->render($response, "/html/footer.html");
+    session_unset();
+});
+
+$app->post('/admin_login', function (Request $request, Response $response) use ($mysqli)
+{
+    $submit = $request->getParsedBody()['submit'];
+    $user = $request->getParsedBody()['username'];
+    $pass = $request->getParsedBody()['password'];
+    if(isset($submit))
+    {
+        $user = mysqli_real_escape_string($mysqli,$user);
+        $pass = mysqli_real_escape_string($mysqli,$pass);
+
+        $sel_user = "select * from admin where username='$user' AND password='$pass'";
+        $run_user = mysqli_query($mysqli, $sel_user);
+        $check_user = mysqli_num_rows($run_user);
+
+        if($check_user>0)
+        {
+            $_SESSION["admin"] = "$user";
+            header("Location: admin");
+            die();
+        }
+        else
+        {
+            $this->renderer->render($response, "/html/header.html");
+            $this->renderer->render($response, "/html/loginerror.html");
+            $this->renderer->render($response, "/html/footer.html");
+        }
+    }
+});
 
 $app->get('/users', function (Request $request, Response $response) use ($mysqli)
 {
     $query = "select * from users order by id";
     $result = $mysqli -> query($query);
+    $data = array();
 
     while($row = $result -> fetch_assoc())
     {
-        $data = $row;
+        $data[] = $row;
     }
     if (isset($data))
     {
@@ -337,6 +449,108 @@ $app->post('/login', function (Request $request, Response $response) use ($mysql
             $this->renderer->render($response, "/html/loginerror.html");
             $this->renderer->render($response, "/html/footer.html");
         }
+    }
+});
+
+$app->get('/products/bighouses', function (Request $request, Response $response) use ($mysqli)
+{
+    $query = "select * from products where category='bighouses'";
+    $result = $mysqli -> query($query);
+    $data = array();
+
+    while($row = $result -> fetch_assoc())
+    {
+        $data[] = $row;
+    }
+    if (isset($data))
+    {
+        header('Content-Type: application/json');
+        echo json_encode($data);
+    }
+});
+
+$app->get('/products/smallhouses', function (Request $request, Response $response) use ($mysqli)
+{
+    $query = "select * from products where category='smallhouses'";
+    $result = $mysqli -> query($query);
+    $data = array();
+
+    while($row = $result -> fetch_assoc())
+    {
+        $data[] = $row;
+    }
+    if (isset($data))
+    {
+        header('Content-Type: application/json');
+        echo json_encode($data);
+    }
+});
+
+$app->get('/products/tworooms', function (Request $request, Response $response) use ($mysqli)
+{
+    $query = "select * from products where category='tworooms'";
+    $result = $mysqli -> query($query);
+    $data = array();
+
+    while($row = $result -> fetch_assoc())
+    {
+        $data[] = $row;
+    }
+    if (isset($data))
+    {
+        header('Content-Type: application/json');
+        echo json_encode($data);
+    }
+});
+
+$app->get('/products/threerooms', function (Request $request, Response $response) use ($mysqli)
+{
+    $query = "select * from products where category='threerooms'";
+    $result = $mysqli -> query($query);
+    $data = array();
+
+    while($row = $result -> fetch_assoc())
+    {
+        $data[] = $row;
+    }
+    if (isset($data))
+    {
+        header('Content-Type: application/json');
+        echo json_encode($data);
+    }
+});
+
+$app->get('/products/studios', function (Request $request, Response $response) use ($mysqli)
+{
+    $query = "select * from products where category='studios'";
+    $result = $mysqli -> query($query);
+    $data = array();
+
+    while($row = $result -> fetch_assoc())
+    {
+        $data[] = $row;
+    }
+    if (isset($data))
+    {
+        header('Content-Type: application/json');
+        echo json_encode($data);
+    }
+});
+
+$app->get('/chart', function (Request $request, Response $response) use ($mysqli)
+{
+    $query = "select * from chart order by title";
+    $result = $mysqli -> query($query);
+    $data = array();
+
+    while($row = $result -> fetch_assoc())
+    {
+        $data[] = $row;
+    }
+    if (isset($data))
+    {
+        header('Content-Type: application/json');
+        echo json_encode($data);
     }
 });
 

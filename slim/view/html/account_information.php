@@ -45,11 +45,11 @@
     <!-- Main component for a primary marketing message or call to action -->
     <div class="col-md-3">
         <ul class="list-group">
-            <a href="#" class="list-group-item">Big houses</a>
-            <a href="#" class="list-group-item">Small houses</a>
-            <a href="#" class="list-group-item">Apartments with 3 rooms</a>
-            <a href="#" class="list-group-item">Apartments with 2 rooms</a>
-            <a href="#" class="list-group-item">Studios</a>
+            <a href="bighouses" class="list-group-item">Big houses</a>
+            <a href="smallhouses" class="list-group-item">Small houses</a>
+            <a href="threerooms" class="list-group-item">Apartments with 3 rooms</a>
+            <a href="tworooms" class="list-group-item">Apartments with 2 rooms</a>
+            <a href="studios" class="list-group-item">Studios</a>
         </ul>
     </div>
     <div class="col-md-9">
@@ -71,15 +71,16 @@
 </div>
 <script>
     $.getJSON( "http://localhost/web/public/users/<?php echo $_SESSION['user'];?>", function(json){
-        var pass = $("<p>" + json.password + "</p>");
-        var email = $("<p>" + json.email + "</p>");
-        var name = $("<p>" + json.name + "</p>");
-        var surname = $("<p>" + json.surname + "</p>");
-        var address = $("<p>" + json.adress + "</p>");
-        $('#acc2').append(pass);
-        $('#acc3').append(email);
-        $('#acc4').append(name);
-        $('#acc5').append(surname);
-        $('#acc6').append(address);
-    });
+            var pass = $("<p>" + json.password + "</p>");
+            var email = $("<p>" + json.email + "</p>");
+            var name = $("<p>" + json.name + "</p>");
+            var surname = $("<p>" + json.surname + "</p>");
+            var address = $("<p>" + json.adress + "</p>");
+            $('#acc2').append(pass);
+            $('#acc3').append(email);
+            $('#acc4').append(name);
+            $('#acc5').append(surname);
+            $('#acc6').append(address);
+        }
+    );
 </script>

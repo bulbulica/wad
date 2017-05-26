@@ -15,11 +15,12 @@
             <ul class="nav navbar-nav">
                 <li><a href="index">Home</a></li>
                 <li><a href="about">About</a></li>
-                <li class="active"><a href="packages">Packages</a></li>
+                <li><a href="packages">Packages</a></li>
                 <li><a href="contact">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="login">Login</a></li>
+                <li class="active"><a href="account">Account</a></li>
+                <li><a href="logout">Logout</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -52,11 +53,34 @@
         </ul>
     </div>
     <div class="col-md-9">
-        <p>With a logged in account you can buy the following packages :</p>
-        <button type="button" class="btn btn-primary">5 offers for 5$</button>
-        <br/><br/>
-        <button type="button" class="btn btn-primary">20 offers for 25$</button>
-        <br/><br/>
-        <button type="button" class="btn btn-primary">50 offers for 40$</button>
+        <button type="button" class="active btn btn-primary">Get Users information</button>
+        <button type="button" class="btn btn-primary">Add new house</button>
+        <button type="button" class="btn btn-primary">Check all orders</button>
+        <br><br>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Adress</th>
+                <th>Account type</th>
+            </tr>
+            </thead>
+            <tbody id="information">
+
+            </tbody>
+        </table>
     </div>
 </div>
+<script>
+    $.getJSON( "http://localhost/web/public/users", function(json){
+            for (var i = 0, len = json.length; i < len; ++i) {
+                $("#information").append("<tr><th scope=\"row\">" + json[i].id + "</td><td>" + json[i].username + "</td><td>" + json[i].email + "</td><td>" + json[i].name + "</td><td>" + json[i].surname + "</td><td>" + json[i].adress + "</td><td>" + json[i].account_type + "</td></tr>");
+            }
+        }
+    );
+</script>
