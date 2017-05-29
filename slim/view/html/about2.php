@@ -14,12 +14,12 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="index">Home</a></li>
-                <li><a href="about">About</a></li>
+                <li class="active"><a href="about">About</a></li>
                 <li><a href="packages">Packages</a></li>
                 <li><a href="contact">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="account">Account</a></li>
+                <li><a href="account">Account</a></li>
                 <li><a href="logout">Logout</a></li>
             </ul>
         </div><!--/.nav-collapse -->
@@ -53,15 +53,13 @@
         </ul>
     </div>
     <div class="col-md-9">
-        <div id="acc"></div>
-        <button type="button" class="btn btn-primary" onclick="window.location.href='account_orders'">Orders</button>
-        <button type="button" class="btn btn-primary" onclick="window.location.href='addnewhouse'">Add new house offer</button>
-        <button type="button" class="btn btn-primary" onclick="window.location.href='account_information'">Account Information</button>
+        <h2>How a Real Estate Shop Helps</h2>
+        <p>Whether buying or selling a home a Realtor can greatly benefit you by making the process easier for a smooth, seamless transaction. Read more to find out what our Realtors can do for you.</p>
+        <h2>Our Agents</h2>
+        <p>Our Agents are all long time Whistler locals and are experts in both the area and the local real estate market. Click here to view a full list of our agents.</p>
+        <h2>Our Story</h2>
+        <p>For more than three decades The Whistler Real Estate Company Ltd. has been the number one real estate company in Whistler. Here is our story.</p>
+        <h2>Our Mission</h2>
+        <p>Our ongoing mission is to provide the highest level of service to our clients to help them when buying or selling. We aim to assist you in making the best real estate decision possible based on your needs.</p>
     </div>
 </div>
-<script>
-    $.getJSON( "http://localhost/web/public/users/<?php echo $_SESSION['user'];?>", function(json){
-        var user = $("<h2>Welcome " + json.username + "</h2>");
-        $('#acc').append(user);
-    });
-</script>

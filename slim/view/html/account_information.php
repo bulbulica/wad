@@ -35,7 +35,7 @@
     <div class="col-md-3">
     </div>
     <div class="col-md-2">
-        <a class="btn btn-primary" href="cart" role="button">Cart - 0 products</a>
+        <a class="btn btn-primary" href="cart" role="button">Cart - <?php echo $_SESSION['allProductsInCart'];?> products</a>
     </div>
     <div class="col-md-1">
     </div>
@@ -53,29 +53,29 @@
         </ul>
     </div>
     <div class="col-md-9">
-        <button type="button" class="btn btn-primary">Orders</button>
-        <button type="button" class="btn btn-primary">Offers</button>
-        <button type="button" class="btn btn-primary active">Account Information</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='account_orders'">Orders</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='addnewhouse'">Add new house offer</button>
+        <button type="button" class="btn btn-primary active" onclick="window.location.href='account_information'">Account Information</button>
         <br><br>
         <form action="users/all" method = "post">
             <input type="hidden" name="_METHOD" value="PUT"/>
-            <p>Username : <?php echo $_SESSION['user'];?></p><input type="hidden" name="username"  value="<?php echo $_SESSION['user'];?>"/>
-            <p>Password : </p><div id="acc2"></div><input type="password" name="password" value="">
-            <p>Email : </p><div id="acc3"></div><input type="text" name="email" value="">
-            <p>Name : </p><div id="acc4"></div><input type="text" name="name" value="">
-            <p>Surname : </p><div id="acc5"></div><input type="text" name="surname" value="">
-            <p>Address : </p><div id="acc6"></div><input type="text" name="adress" value="">
+            <input type="hidden" name="username"  value="<?php echo $_SESSION['user'];?>"/>
+            <p>Password : </p><div id="acc2"></div>
+            <p>Email : </p><div id="acc3"></div>
+            <p>Name : </p><div id="acc4"></div>
+            <p>Surname : </p><div id="acc5"></div>
+            <p>Address : </p><div id="acc6"></div>
             <input type="submit" class="btn btn-primary"/>
         </form>
     </div>
 </div>
 <script>
     $.getJSON( "http://localhost/web/public/users/<?php echo $_SESSION['user'];?>", function(json){
-            var pass = $("<p>" + json.password + "</p>");
-            var email = $("<p>" + json.email + "</p>");
-            var name = $("<p>" + json.name + "</p>");
-            var surname = $("<p>" + json.surname + "</p>");
-            var address = $("<p>" + json.adress + "</p>");
+            var pass = $("<p><input type=\"password\" name=\"password\" value=\"" + json.password + "\"></p>");
+            var email = $("<p><input type=\"text\" name=\"email\" value=\"" + json.email + "\"></p>");
+            var name = $("<p><input type=\"text\" name=\"name\" value=\"" + json.name + "\"></p>");
+            var surname = $("<p><input type=\"text\" name=\"surname\" value=\"" + json.surname + "\"></p>");
+            var address = $("<p><input type=\"text\" name=\"adress\" value=\"" + json.adress + "\"></p>");
             $('#acc2').append(pass);
             $('#acc3').append(email);
             $('#acc4').append(name);

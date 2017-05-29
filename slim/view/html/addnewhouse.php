@@ -19,7 +19,7 @@
                 <li><a href="contact">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="account">Account</a></li>
+                <li><a href="account">Account</a></li>
                 <li><a href="logout">Logout</a></li>
             </ul>
         </div><!--/.nav-collapse -->
@@ -53,15 +53,43 @@
         </ul>
     </div>
     <div class="col-md-9">
-        <div id="acc"></div>
         <button type="button" class="btn btn-primary" onclick="window.location.href='account_orders'">Orders</button>
-        <button type="button" class="btn btn-primary" onclick="window.location.href='addnewhouse'">Add new house offer</button>
+        <button type="button" class="btn btn-primary active" onclick="window.location.href='addnewhouse'">Add new house offer</button>
         <button type="button" class="btn btn-primary" onclick="window.location.href='account_information'">Account Information</button>
+        <br><br>
+        <form>
+            <div class="form-group">
+                <label for="product_name">Product name</label>
+                <input type="text" name="product_name" class="form-control" id="product_name" aria-describedby="emailHelp" placeholder="Enter product name">
+            </div>
+            <div class="form-group">
+                <label for="quant">Quantity</label>
+                <input type="text" name="quant" class="form-control" id="quant" placeholder="Enter quantity">
+            </div>
+            <div class="form-group">
+                <label for="descr">Description</label>
+                <textarea name="descr" class="form-control" id="descr" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select name="category" class="form-control" id="category">
+                    <option>bighouses</option>
+                    <option>smallhouses</option>
+                    <option>tworooms</option>
+                    <option>threerooms</option>
+                    <option>studios</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="price">Quantity</label>
+                <input type="text" name="price" class="form-control" id="price" placeholder="Enter price">
+            </div>
+            <div class="form-group">
+                <label for="img">Add image</label>
+                <input type="file" name="img" class="form-control-file" id="img" aria-describedby="img">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 </div>
-<script>
-    $.getJSON( "http://localhost/web/public/users/<?php echo $_SESSION['user'];?>", function(json){
-        var user = $("<h2>Welcome " + json.username + "</h2>");
-        $('#acc').append(user);
-    });
-</script>

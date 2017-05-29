@@ -14,254 +14,387 @@ session_start();
 
 $app->get('/', function (Request $request, Response $response)
 {
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
     if(!isset($_SESSION["user"]))
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/index.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/index.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
     else
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/index2.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/index2.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
 });
 
 $app->get('/index', function (Request $request, Response $response)
 {
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
     if(!isset($_SESSION["user"]))
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/index.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/index.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
     else
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/index2.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/index2.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
 });
 
 $app->get('/about', function (Request $request, Response $response)
 {
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
     if(!isset($_SESSION["user"]))
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/about.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/about.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
     else
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/about2.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/about2.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
 });
 
 $app->get('/cart', function (Request $request, Response $response)
 {
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
     if(!isset($_SESSION["user"]))
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/cart.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/cart.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
     else
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/cart2.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/cart2.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
 });
 
 $app->get('/contact', function (Request $request, Response $response)
 {
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
     if(!isset($_SESSION["user"]))
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/contact.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/contact.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
     else
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/contact2.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/contact2.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
 });
 
 $app->get('/packages', function (Request $request, Response $response)
 {
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
     if(!isset($_SESSION["user"]))
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/index.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/index.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
     else
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/packages2.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/packages.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
 });
 
 $app->get('/bighouses', function (Request $request, Response $response)
 {
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
     if(!isset($_SESSION["user"]))
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/bighouses.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/bighouses.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
     else
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/bighouses2.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/bighouses2.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
 });
 
 $app->get('/smallhouses', function (Request $request, Response $response)
 {
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
     if(!isset($_SESSION["user"]))
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/smallhouses.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/smallhouses.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
     else
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/smallhouses2.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/smallhouses2.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
 });
 
 $app->get('/threerooms', function (Request $request, Response $response)
 {
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
     if(!isset($_SESSION["user"]))
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/threerooms.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/threerooms.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
     else
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/threerooms2.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/threerooms2.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
 });
 
 $app->get('/tworooms', function (Request $request, Response $response)
 {
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
     if(!isset($_SESSION["user"]))
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/tworooms.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/tworooms.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
     else
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/tworooms2.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/tworooms2.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
 });
 
 $app->get('/studios', function (Request $request, Response $response)
 {
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
     if(!isset($_SESSION["user"]))
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/studios.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/studios.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
     else
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/studios2.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/studios2.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
 });
 
 $app->get('/login', function (Request $request, Response $response)
 {
-    $this->renderer->render($response, "/html/header.html");
-    $this->renderer->render($response, "/html/login.html");
-    $this->renderer->render($response, "/html/footer.html");
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
+    $this->renderer->render($response, "/html/header.php");
+    $this->renderer->render($response, "/html/login.php");
+    $this->renderer->render($response, "/html/footer.php");
 });
 
 $app->get('/logout', function (Request $request, Response $response)
 {
-    $this->renderer->render($response, "/html/header.html");
-    $this->renderer->render($response, "/html/logout.html");
-    $this->renderer->render($response, "/html/footer.html");
+    $this->renderer->render($response, "/html/header.php");
+    $this->renderer->render($response, "/html/logout.php");
+    $this->renderer->render($response, "/html/footer.php");
     session_unset();
 });
 
 $app->get('/account', function (Request $request, Response $response)
 {
-    $this->renderer->render($response, "/html/header.html");
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
+    $this->renderer->render($response, "/html/header.php");
     $this->renderer->render($response, "/html/account.php");
-    $this->renderer->render($response, "/html/footer.html");
+    $this->renderer->render($response, "/html/footer.php");
+});
+
+$app->get('/checkout', function (Request $request, Response $response) use ($mysqli)
+{
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
+    foreach ($_SESSION["cart"] as $result)
+    {
+        list($product_id, $quantity) = explode("+",$result);
+        $username = "outside";
+        if (isset($_SESSION["user"]))
+        {
+            $username = $_SESSION["user"];
+        }
+        $price = 0;
+        $status = "paid";
+        $query2 = "select * from products where id='$product_id'";
+        $result = $mysqli -> query($query2);
+        while($row = $result -> fetch_assoc())
+        {
+            $price = $row['price'];
+        }
+        $price *= $quantity;
+
+        $query = "insert into orders (person, price, status) values ('$username', '$price', '$status')";
+
+        $mysqli->query($query);
+    }
+    $_SESSION['allProductsInCart'] = 0;
+    $_SESSION["cart"] = null;
+    if(!isset($_SESSION['user']))
+    {
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/checkout.php");
+        $this->renderer->render($response, "/html/footer.php");
+    }
+    else
+    {
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/checkout2.php");
+        $this->renderer->render($response, "/html/footer.php");
+    }
 });
 
 $app->get('/account_information', function (Request $request, Response $response)
 {
-    $this->renderer->render($response, "/html/header.html");
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
+    $this->renderer->render($response, "/html/header.php");
     $this->renderer->render($response, "/html/account_information.php");
-    $this->renderer->render($response, "/html/footer.html");
+    $this->renderer->render($response, "/html/footer.php");
 });
 
 $app->get('/account_orders', function (Request $request, Response $response)
 {
-    $this->renderer->render($response, "/html/header.html");
-    //$this->renderer->render($response, "/html/account_information.php");
-    $this->renderer->render($response, "/html/footer.html");
-});
-
-$app->get('/account_offers', function (Request $request, Response $response)
-{
-    $this->renderer->render($response, "/html/header.html");
-    //$this->renderer->render($response, "/html/account_information.php");
-    $this->renderer->render($response, "/html/footer.html");
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
+    $this->renderer->render($response, "/html/header.php");
+    $this->renderer->render($response, "/html/account_orders.php");
+    $this->renderer->render($response, "/html/footer.php");
 });
 
 $app->get('/admin', function (Request $request, Response $response)
 {
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
     if(!isset($_SESSION['admin']))
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/admin_login.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/admin_login.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
     else
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/admin.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/admin.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
 });
 
 $app->get('/alluserinformation', function (Request $request, Response $response)
 {
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
     if(isset($_SESSION['admin']))
     {
-        $this->renderer->render($response, "/html/header.html");
-        $this->renderer->render($response, "/html/alluserinformation.html");
-        $this->renderer->render($response, "/html/footer.html");
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/alluserinformation.php");
+        $this->renderer->render($response, "/html/footer.php");
+    }
+});
+
+$app->get('/addnewhouse', function (Request $request, Response $response)
+{
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
+    if(isset($_SESSION['user']))
+    {
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/addnewhouse.php");
+        $this->renderer->render($response, "/html/footer.php");
+    }
+});
+
+$app->get('/allorders', function (Request $request, Response $response)
+{
+    if (!isset($_SESSION['allProductsInCart']))
+    {
+        $_SESSION['allProductsInCart'] = 0;
+    }
+    if(isset($_SESSION['admin']))
+    {
+        $this->renderer->render($response, "/html/header.php");
+        $this->renderer->render($response, "/html/allorders.php");
+        $this->renderer->render($response, "/html/footer.php");
     }
 });
 
 $app->get('/admin_logout', function (Request $request, Response $response)
 {
-    $this->renderer->render($response, "/html/header.html");
-    $this->renderer->render($response, "/html/logout.html");
-    $this->renderer->render($response, "/html/footer.html");
+    $this->renderer->render($response, "/html/header.php");
+    $this->renderer->render($response, "/html/logout.php");
+    $this->renderer->render($response, "/html/footer.php");
     session_unset();
 });
 
@@ -287,9 +420,9 @@ $app->post('/admin_login', function (Request $request, Response $response) use (
         }
         else
         {
-            $this->renderer->render($response, "/html/header.html");
-            $this->renderer->render($response, "/html/loginerror.html");
-            $this->renderer->render($response, "/html/footer.html");
+            $this->renderer->render($response, "/html/header.php");
+            $this->renderer->render($response, "/html/loginerror.php");
+            $this->renderer->render($response, "/html/footer.php");
         }
     }
 });
@@ -445,9 +578,9 @@ $app->post('/login', function (Request $request, Response $response) use ($mysql
         }
         else
         {
-            $this->renderer->render($response, "/html/header.html");
-            $this->renderer->render($response, "/html/loginerror.html");
-            $this->renderer->render($response, "/html/footer.html");
+            $this->renderer->render($response, "/html/header.php");
+            $this->renderer->render($response, "/html/loginerror.php");
+            $this->renderer->render($response, "/html/footer.php");
         }
     }
 });
@@ -537,9 +670,35 @@ $app->get('/products/studios', function (Request $request, Response $response) u
     }
 });
 
-$app->get('/chart', function (Request $request, Response $response) use ($mysqli)
+$app->get('/cart/allproducts', function (Request $request, Response $response) use ($mysqli)
 {
-    $query = "select * from chart order by title";
+    $new_data = array();
+    header('Content-Type: application/json');
+    echo "[{}";
+
+    foreach ($_SESSION["cart"] as $result)
+    {
+        list($product_id, $quantity) = explode("+",$result);
+        $query = "select * from products where id='$product_id'";
+        $result = $mysqli -> query($query);
+        $data = array();
+
+        while($row = $result -> fetch_assoc())
+        {
+            echo ",";
+            $data[] = $row;
+            $new_data['product_name'] = $row['product_name'];
+            $new_data['quant'] = $quantity;
+            $new_data['price'] = $row['price'];
+            echo json_encode($new_data);
+        }
+    }
+    echo "]";
+});
+
+$app->get('/getallorders', function (Request $request, Response $response) use ($mysqli)
+{
+    $query = "select * from orders";
     $result = $mysqli -> query($query);
     $data = array();
 
@@ -552,6 +711,65 @@ $app->get('/chart', function (Request $request, Response $response) use ($mysqli
         header('Content-Type: application/json');
         echo json_encode($data);
     }
+});
+
+$app->get('/getscpecificorder/{username}', function (Request $request, Response $response) use ($mysqli)
+{
+    $username = $request->getAttribute('username');
+
+    $query = "select * from orders where person = '$username'";
+    $result = $mysqli->query($query);
+
+    $data = array();
+
+    while($row = $result -> fetch_assoc())
+    {
+        $data[] = $row;
+    }
+    if (isset($data))
+    {
+        header('Content-Type: application/json');
+        echo json_encode($data);
+    }
+});
+
+$app->post('/cart/add', function (Request $request, Response $response) use ($mysqli)
+{
+    if (!isset($_SESSION["cart"]))
+    {
+        $_SESSION['cart'] = array();
+        $_SESSION['allProductsInCart'] = 0;
+    }
+    $product = $request->getParsedBody()['product'];
+    $quantity = $request->getParsedBody()['quantity'];
+    $combined = $product . "+" . $quantity;
+    array_push($_SESSION["cart"], $combined);
+    $_SESSION['allProductsInCart']++;
+    if (!isset($_SESSION["user"]))
+    {
+        $this->renderer->render($response, "/html/header2.php");
+        $this->renderer->render($response, "/html/addcart.php");
+        $this->renderer->render($response, "/html/footer2.php");
+    }
+    else
+    {
+        $this->renderer->render($response, "/html/header2.php");
+        $this->renderer->render($response, "/html/addcart2.php");
+        $this->renderer->render($response, "/html/footer2.php");
+    }
+});
+
+$app->post('/addpackages', function (Request $request, Response $response) use ($mysqli)
+{
+    $package = $request->getParsedBody()['package'];
+    $id = $request->getParsedBody()['id'];
+
+    $query = "UPDATE users SET account_type = '$package' where username = '$id'";
+    $mysqli -> query($query);
+
+    $this->renderer->render($response, "/html/header.php");
+    $this->renderer->render($response, "/html/addpackage.php");
+    $this->renderer->render($response, "/html/footer.php");
 });
 
 $app->run();

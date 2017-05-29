@@ -19,7 +19,7 @@
                 <li><a href="contact">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="account">Account</a></li>
+                <li class="active"><a href="admin">Account</a></li>
                 <li><a href="logout">Logout</a></li>
             </ul>
         </div><!--/.nav-collapse -->
@@ -53,15 +53,30 @@
         </ul>
     </div>
     <div class="col-md-9">
-        <div id="acc"></div>
-        <button type="button" class="btn btn-primary" onclick="window.location.href='account_orders'">Orders</button>
-        <button type="button" class="btn btn-primary" onclick="window.location.href='addnewhouse'">Add new house offer</button>
-        <button type="button" class="btn btn-primary" onclick="window.location.href='account_information'">Account Information</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='alluserinformation'">Get Users information</button>
+        <button type="button" class="btn btn-primary active" onclick="window.location.href='allorders'">Check all orders</button>
+        <br><br>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Price</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody id="information">
+
+            </tbody>
+        </table>
     </div>
 </div>
 <script>
-    $.getJSON( "http://localhost/web/public/users/<?php echo $_SESSION['user'];?>", function(json){
-        var user = $("<h2>Welcome " + json.username + "</h2>");
-        $('#acc').append(user);
-    });
+    $.getJSON( "http://localhost/web/public/getallorders", function(json){
+            for (var i = 0, len = json.length; i < len; ++i) {
+                $("#information").append("<tr><th scope=\"row\">" + json[i].id + "</td><td>" + json[i].person + "</td><td>" + json[i].price + "</td><td>" + json[i].status + "</td></tr>");
+            }
+        }
+    );
 </script>

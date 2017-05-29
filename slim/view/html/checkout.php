@@ -15,12 +15,10 @@
             <ul class="nav navbar-nav">
                 <li><a href="index">Home</a></li>
                 <li><a href="about">About</a></li>
-                <li><a href="packages">Packages</a></li>
                 <li><a href="contact">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="account">Account</a></li>
-                <li><a href="logout">Logout</a></li>
+                <li><a href="login">Login</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -53,15 +51,6 @@
         </ul>
     </div>
     <div class="col-md-9">
-        <div id="acc"></div>
-        <button type="button" class="btn btn-primary" onclick="window.location.href='account_orders'">Orders</button>
-        <button type="button" class="btn btn-primary" onclick="window.location.href='addnewhouse'">Add new house offer</button>
-        <button type="button" class="btn btn-primary" onclick="window.location.href='account_information'">Account Information</button>
+        <h2>Products have by purchased</h2>
     </div>
 </div>
-<script>
-    $.getJSON( "http://localhost/web/public/users/<?php echo $_SESSION['user'];?>", function(json){
-        var user = $("<h2>Welcome " + json.username + "</h2>");
-        $('#acc').append(user);
-    });
-</script>

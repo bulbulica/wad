@@ -15,11 +15,11 @@
             <ul class="nav navbar-nav">
                 <li><a href="index">Home</a></li>
                 <li><a href="about">About</a></li>
-                <li><a href="packages">Packages</a></li>
+                <li class="active"><a href="packages">Packages</a></li>
                 <li><a href="contact">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="account">Account</a></li>
+                <li><a href="account">Account</a></li>
                 <li><a href="logout">Logout</a></li>
             </ul>
         </div><!--/.nav-collapse -->
@@ -53,15 +53,23 @@
         </ul>
     </div>
     <div class="col-md-9">
-        <div id="acc"></div>
-        <button type="button" class="btn btn-primary" onclick="window.location.href='account_orders'">Orders</button>
-        <button type="button" class="btn btn-primary" onclick="window.location.href='addnewhouse'">Add new house offer</button>
-        <button type="button" class="btn btn-primary" onclick="window.location.href='account_information'">Account Information</button>
+        <p>With a logged in account you can buy the following packages :</p>
+        <form method="post">
+            <input type="hidden" name="package" value="2"/>
+            <input type="hidden" name="id" value="<?php echo $_SESSION["user"]; ?>"/>
+            <button type="submit" class="btn btn-primary" formaction="addpackages">5 offers for 5$</button>
+        </form>
+        <br>
+        <form method="post">
+            <input type="hidden" name="package" value="3"/>
+            <input type="hidden" name="id" value="<?php echo $_SESSION["user"]; ?>"/>
+            <button type="submit" class="btn btn-primary" formaction="addpackages">20 offers for 25$</button>
+        </form>
+        <br>
+        <form method="post">
+            <input type="hidden" name="package" value="4"/>
+            <input type="hidden" name="id" value="<?php echo $_SESSION["user"]; ?>"/>
+            <button type="submit" class="btn btn-primary" formaction="addpackages">50 offers for 40$</button>
+        </form>
     </div>
 </div>
-<script>
-    $.getJSON( "http://localhost/web/public/users/<?php echo $_SESSION['user'];?>", function(json){
-        var user = $("<h2>Welcome " + json.username + "</h2>");
-        $('#acc').append(user);
-    });
-</script>

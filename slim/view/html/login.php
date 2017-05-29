@@ -15,12 +15,10 @@
             <ul class="nav navbar-nav">
                 <li><a href="index">Home</a></li>
                 <li><a href="about">About</a></li>
-                <li><a href="packages">Packages</a></li>
                 <li><a href="contact">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="account">Account</a></li>
-                <li><a href="logout">Logout</a></li>
+                <li class="active"><a href="login">Login</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -53,15 +51,21 @@
         </ul>
     </div>
     <div class="col-md-9">
-        <div id="acc"></div>
-        <button type="button" class="btn btn-primary" onclick="window.location.href='account_orders'">Orders</button>
-        <button type="button" class="btn btn-primary" onclick="window.location.href='addnewhouse'">Add new house offer</button>
-        <button type="button" class="btn btn-primary" onclick="window.location.href='account_information'">Account Information</button>
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title"><strong>Sign In </strong></h3></div>
+            <div class="panel-body">
+                <form role="form" action='login' method="post">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Enter password">
+                    </div>
+                    <button type="submit" name="submit" class="btn btn-sm btn-default">Sign in</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
-<script>
-    $.getJSON( "http://localhost/web/public/users/<?php echo $_SESSION['user'];?>", function(json){
-        var user = $("<h2>Welcome " + json.username + "</h2>");
-        $('#acc').append(user);
-    });
-</script>
