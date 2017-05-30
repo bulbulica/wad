@@ -772,4 +772,27 @@ $app->post('/addpackages', function (Request $request, Response $response) use (
     $this->renderer->render($response, "/html/footer.php");
 });
 
+$app->post('/addhouse', function (Request $request, Response $response) use ($mysqli)
+{
+    $product_name = $request->getParsedBody()['product_name'];
+    $quant = $request->getParsedBody()['quant'];
+    $descr = $request->getParsedBody()['descr'];
+    $category = $request->getParsedBody()['category'];
+    $price = $request->getParsedBody()['price'];
+    $img = $request->getParsedBody()['img'];
+    $user = $_SESSION['user'];
+    $target_dir = "../view/images";
+    $target_file = $target_dir . basename($_FILES["img"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+    getimagesize($_FILES["img"]["tmp_name"]);
+
+    $query = "insert into products (product_name, descr, quant, img, category, price, person) values ('$product_name', '$descr', '$quant', 'none', '$category', '$price', '$user')";
+    $mysqli -> query($query);
+
+    $this->renderer->render($response, "/html/header.php");
+    $this->renderer->render($response, "/html/addhouse.php");
+    $this->renderer->render($response, "/html/footer.php");
+});
+
 $app->run();

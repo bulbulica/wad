@@ -57,7 +57,7 @@
         <button type="button" class="btn btn-primary active" onclick="window.location.href='addnewhouse'">Add new house offer</button>
         <button type="button" class="btn btn-primary" onclick="window.location.href='account_information'">Account Information</button>
         <br><br>
-        <form>
+        <form role="form" action='addhouse' method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="product_name">Product name</label>
                 <input type="text" name="product_name" class="form-control" id="product_name" aria-describedby="emailHelp" placeholder="Enter product name">
@@ -81,7 +81,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="price">Quantity</label>
+                <label for="price">Price</label>
                 <input type="text" name="price" class="form-control" id="price" placeholder="Enter price">
             </div>
             <div class="form-group">
